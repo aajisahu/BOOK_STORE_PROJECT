@@ -1,0 +1,79 @@
+<app-home></app-home>
+<div class="scrollbar">
+   <div class="container" fxLayout="column" fxLayoutGap="25px">
+      <div>
+         <!-- <p class="head0">Home</p> -->
+         <button mat-button style=" padding-right: 0px; min-width: 50px;" (click)='homeButton()'
+            class="head0">Home</button>
+         <p class="head1">/ Book(01)</p>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="center start" fxLayoutGap="50px" fxLayout.lt-md="column">
+         <div fxLayout="column" fxLayoutGap="15px">
+            <img class="book" src="./../../../assets/Books/{{bookList.image}}">
+            <div fxLayout="row" fxLayoutAlign="space-between start">
+               <button mat-flat-button type="submit" color="primary" class="addtobagbutton" [disabled]="clicked1"
+                  (click)="addToCart(); clicked1 = true; " (childEvent)="$event">Add to bag</button>
+
+               <button mat-flat-button type="submit" color="primary" class="wishlistbutton" [disabled]="clicked2"
+                  (click)="wishlist(); clicked2 = true; ">Wishlist</button>
+
+            </div>
+         </div>
+         <div style="width: 600px;">
+            <p class="bookname">{{bookList.bookName }}</p>
+            <p class="author">by {{bookList.authorName}}</p>
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+               <div class="ratingbox">
+                  <p class="rating">{{bookList.bookRating}}</p>
+                  <mat-icon class="rating_star">star</mat-icon>
+               </div>
+               <p class="ratingno">({{bookList.noOfBooks}})</p>
+            </div>
+
+            <div fxLayout="row" fxLayoutGap="10px">
+               <p class="actualprice"> {{bookList.price | currency:'INR'}} </p>
+               <p class="discountPrice"><del>Rs. {{bookList.discountPrice-bookList.price}}</del></p>
+            </div>
+            <hr>
+            <ul class="list">
+               <li class="bookdetails">Book Detail</li>
+            </ul>
+            <p class="description">{{bookList.bookDetails}}</p>
+            <hr>
+            <p class="feedbackhead">Customer Feedback</p>
+            <div class="reviewbox" fxLayout="column">
+               <p class="ratinghead">Overall rating</p>
+               <div fxLayout="row" style="color: #707070;">
+                  <button mat-icon-button>
+                     <i class="material-icons-outlined"><img
+                           src="../../../assets/BookDetailsImages/star_outline_black_24dp.svg" alt=""></i>
+                  </button>
+                  <button mat-icon-button style=" width: 35px !important;">
+                     <i class="material-icons-outlined"><img
+                           src="../../../assets/BookDetailsImages/star_outline_black_24dp.svg" alt=""></i>
+                  </button>
+                  <button mat-icon-button>
+                     <i class="material-icons-outlined"><img
+                           src="../../../assets/BookDetailsImages/star_outline_black_24dp.svg" alt=""></i>
+                  </button>
+                  <button mat-icon-button>
+                     <i class="material-icons-outlined"><img
+                           src="../../../assets/BookDetailsImages/star_outline_black_24dp.svg" alt=""></i>
+                  </button>
+                  <button mat-icon-button>
+                     <i class="material-icons-outlined"><img
+                           src="../../../assets/BookDetailsImages/star_outline_black_24dp.svg" alt=""></i>
+                  </button>
+               </div>
+               <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="20"
+                  [(ngModel)]="review" placeholder="write your review" class="searchinput"
+                  [ngStyle.lt-md]="{'width.VW': 80}"></textarea>
+               <button class="reviewsubmit" mat-flat-button color="primary">
+                  <p class="submitbotton">Submit</p>
+               </button>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<app-footer></app-footer>

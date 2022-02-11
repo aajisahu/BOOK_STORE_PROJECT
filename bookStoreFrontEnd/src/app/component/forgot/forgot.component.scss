@@ -1,0 +1,53 @@
+.forgot {
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 100px;
+}
+
+.matcard {
+    width          : 424px;
+    height         : 287px;
+    display        : flex;
+    flex-direction : column;
+    align-items    : center;
+    justify-content: center;
+    border         : 2px solid white;
+    border-width   : thin;
+    margin-top     : 20px;
+}
+
+.ResetButton {
+    width        : 300px;
+    height       : 37px;
+    background   : #a03037 0% 0% no-repeat padding-box;
+    border-radius: 1px;
+    opacity      : 1;
+    border       : none;
+    margin-top   : 38px;
+}
+
+.Createaccount {
+    width      : 458px;
+    margin-top : 19px;
+    font-size  : 18px;
+    height     : 95px;
+    font-weight: bold;
+    border     : none;
+    color      : black;
+}
+
+mat-form-field {
+    width        : 292px;
+    border-radius: 50%;
+    height       : 10px;
+}
+
+button {
+    color: white;
+    width: 5em;
+}

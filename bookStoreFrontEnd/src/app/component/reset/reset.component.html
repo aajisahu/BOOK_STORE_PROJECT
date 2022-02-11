@@ -1,0 +1,35 @@
+<h1>Reset Password</h1>
+<div class="forgot">
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="matcard ">
+
+      <form [formGroup]="resetForm">
+        <span>New password</span>
+        <div class="loginPass">
+          <mat-form-field style="width: 275px;" appearance="outline">
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+        <br>
+        <span>Confirm Password</span>
+        <div class="loginPass">
+          <mat-form-field style="width: 275px;" appearance="outline">
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="confirmPassword">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+      </form>
+
+      <div class="btn">
+        <button mat-raised-button color="primary" (click)="resetPass()">Save</button>
+      </div>
+    </mat-card>
+  </div>
+</div>

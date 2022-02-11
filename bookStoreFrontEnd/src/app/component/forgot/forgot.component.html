@@ -1,0 +1,33 @@
+<h1>Forgot Your Password?</h1>
+<div class="forgot">
+    <div fxLayout="row" fxLayoutAlign="center center">
+        <mat-card class="matcard ">
+            <div fxLayout="column" fxLayoutAlign="center center">
+                <mat-card-subtitle>
+                    <h3>Enter your email address and we'll send you a link to reset your
+                        password.</h3>
+                </mat-card-subtitle>
+            </div>
+
+            <form [formGroup]="forgotPass">
+                <div fxLayout="column" fxLayoutAlign="center center">
+                    <h4>Email Id</h4>
+                    <mat-form-field appearance="outline">
+                       
+                        <!-- <mat-label>EmailId</mat-label> -->
+                        <input matInput formControlName="loginEmail">
+                        <mat-error>Email Required!</mat-error>
+                    </mat-form-field>
+
+                    <div>
+                        <button mat-button class="ResetButton" routerLink="/reset" (click)="forgotClick()">Reset Password</button>
+                    </div>
+                </div>
+            </form>
+
+            <div fxLayout="column" fxLayoutAlign="start start">
+                <button class="Createaccount" routerLink="/home">CREATE ACCOUNT</button>
+            </div>
+        </mat-card>
+    </div>
+</div>

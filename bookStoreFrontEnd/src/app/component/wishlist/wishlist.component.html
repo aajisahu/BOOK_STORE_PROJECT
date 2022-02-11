@@ -1,0 +1,41 @@
+<div class="container" fxLayout="column" fxLayoutAlign="center center">
+    <div fxLayout="column" fxLayoutAlign="start start">
+        <div fxLayout="row">
+            <p class="head0">Home /</p>
+            <p class="head1">My Whishlist</p>
+        </div>
+ 
+        <mat-card class="card">
+            <mat-card-header class="cardheader">
+                <mat-card-title class="cardtitle">My Wishlist ({{count}})</mat-card-title>
+            </mat-card-header>
+            <mat-card-content  class="cardcontent" *ngFor="let data of wishListArray" fxLayout="row" fxLayoutGap="38px">
+                <div>
+                    <img routerLink="/quickview" class="book" src="./../../../assets/Books/{{data.image}}">
+                </div>
+                <div>
+                    <p class="bookname" routerLink="/quickview">{{data.bookName}}</p>
+                    <p class="author" >by {{data.authorName}}</p>
+
+                    <div fxLayout="row" fxLayoutGap="10px">
+                            <div fxLayout="row" fxLayoutGap="10px">
+                                <p class="actualprice" > {{data.price | currency:'INR'}} </p>
+                        <p class="discountPrice" ><del>Rs. {{data.discountPrice-data.price}}</del></p>
+                        </div>
+                    </div>
+                </div>
+                <div fxFlex fxLayoutAlign="end">
+                    <button class="delete" mat-icon-button (click)=" removeWishListItem(data.bookId)">
+                        <i class="fa fa-trash-o" style="font-size:24px"></i>
+                    </button>
+                </div>
+                <!-- <div fxFlex fxLayoutAlign="end">
+                    <button class="addtocart" mat-icon-button>
+                      <i class="material-icons-outlined" style="opacity: 0.5;">Add To Cart</i>
+                    </button>
+                </div> -->
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <app-footer></app-footer>
+ </div>

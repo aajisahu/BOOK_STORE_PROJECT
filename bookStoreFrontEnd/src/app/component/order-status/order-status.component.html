@@ -1,0 +1,39 @@
+<div class="container" fxLayout="column" fxLayoutAlign="center center">
+    <div fxLayout="column" fxLayoutAlign="start start">
+        <div fxLayout="row">
+            <p class="head0" (click)='homeButton()'>Home /</p>
+            <p class="head1">My Order</p>
+        </div>
+
+        <mat-card class="card">
+            <mat-card-content class="cardcontent" *ngFor="let data of bookList" fxLayout="row" fxLayoutGap="38px">
+                <div>
+                    <img routerLink="/quickview" class="book" src="./../../../assets/Books/{{data.bookModel.image}}">
+                </div>
+                <div>
+                    <p class="bookname" routerLink="/quickview">{{data.bookModel.bookName}}</p>
+                    <p class="author">by {{data.bookModel.authorName}}</p>
+
+                    <div fxLayout="row" fxLayoutGap="10px">
+                        <div fxLayout="row" fxLayoutGap="10px">
+                            <p class="actualprice"> {{data.bookModel.price | currency:'INR'}} </p>
+                            <p class="discountPrice"><del>Rs.
+                                    {{data.bookModel.discountPrice-data.bookModel.price}}</del></p>
+                        </div>
+                    </div>
+
+                </div>
+                <div fxFlex fxLayoutAlign="end">
+
+                    <ul>
+                        <li class="list">
+                            Order Placed On {{data.orderPlacedTime | date: 'mediumDate' }}
+                        </li>
+                    </ul>
+
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <app-footer></app-footer>
+</div>

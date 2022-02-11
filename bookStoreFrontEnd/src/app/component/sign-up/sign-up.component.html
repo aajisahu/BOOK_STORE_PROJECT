@@ -1,0 +1,122 @@
+<div class="signupLoginboth">
+    <div fxLayout="row" fxLayoutAlign="center">
+    <div fxLayout="column" fxLayoutAlign="space-between center" fxLayout.xs="row" fxHide.lt-sm>
+
+        <mat-card class="example-card">
+            <img src="../../../assets/Login-signup/Womencart.png" class="image" />
+            <h1 class="h1">Online Book Shopping</h1>
+        </mat-card>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="center center">
+        </div>
+        <div style="display: flex; flex-flow: row">
+            <mat-card class="example-card2">
+                <div fxLayout="row" fxLayoutAlign="space-evenly start" style="margin-top: -89px">
+                    <mat-tab-group>
+                        <!-- Login Page -->
+                        <mat-tab label="Login">
+                            <form [formGroup]="loginForm" fxLayout="column" fxLayoutAlign="start start">
+                                <div>
+                                    <span>Email id</span>
+                                    <div>
+                                        <mat-form-field width="600px" appearance="outline">
+                                            <input matInput formControlName="loginEmail">
+                                            <mat-error>Email Required!</mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <!-- <div>
+                                    <span>Password</span>
+                                    <div>
+                                        <mat-form-field appearance="outline">
+                                            <input matInput autocomplete="on"  [type]="hide ? 'password' : 'text'" />
+                                            <mat-error>Password Required!</mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                </div> -->
+                                
+                                <div class="loginPass">
+                                    <mat-form-field style="width: 275px;" appearance="outline">
+                                    <input matInput [type]="hide ? 'password' : 'text'" formControlName="loginPassword">
+                                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                    </button>
+                                    </mat-form-field>
+                                </div>  
+                                <div></div>
+                                <a routerLink="/forgot" routerLinkActive="ForgotComponent" >forgot pass?</a>
+                                <!-- <span routerLink="/forgot" routerLinkActive="ForgotComponent">Forget password?</span> -->
+                                <br />
+                                <button class="loginbutton" style="color: white" (click)="onLogin()">Login</button>
+                            </form>
+
+                            <div>
+                                <h2><span>OR</span></h2>
+                            </div>
+                            <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px"
+                                fxLayout.xs="column">
+                                <button class="bottombuttons" style="color: white">
+                                    Facebbok
+                                </button>
+                                <button style="background-color: #e4e4e4" class="bottombuttons">
+                                    Google
+                                </button>
+                            </div>
+                        </mat-tab>
+                        <!-- //signup form -->
+                        <mat-tab label="Signup">
+                            <form fxLayout="column" [formGroup]="signupForm" fxLayoutAlign="start start">
+                                <div>
+                                    <span>Fullname</span>
+                                    <div>
+                                        <mat-form-field width="600px" appearance="outline">
+                                            <input matInput formControlName="fullName"/>
+                                            <mat-error>Name Required!</mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span>EmailId</span>
+                                    <div>
+                                        <mat-form-field width="600px" appearance="outline">
+                                            <input matInput formControlName="email" />
+                                            <mat-error>Email Required!</mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <!-- <div>
+                                    <span>Password</span>
+                                    <div>
+                                        <mat-form-field appearance="outline">
+                                            <input matInput autocomplete="on" />
+                                            <mat-error>Password Required!</mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                </div> -->
+                                <span>Password</span>
+                                <div class="loginPass">
+                                    <mat-form-field style="width: 275px;" appearance="outline">
+                                    <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                    </button>
+                                    </mat-form-field>
+                                </div>  
+                                <div>
+                                    <span>Mobile Number</span>
+                                    <div>
+                                        <mat-form-field appearance="outline">
+                                            <input matInput matInput formControlName="mobileNumber"/>
+                                            <mat-error>Mobile Number Required!</mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <button (click)="onSignup()" class="loginbutton" style="color: white" >Signup</button>
+                            </form>
+                        </mat-tab>
+                    </mat-tab-group>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</div>

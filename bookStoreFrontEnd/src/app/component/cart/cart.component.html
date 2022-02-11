@@ -1,0 +1,143 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+    <div class="container" fxLayout="column" fxLayoutAlign="start start">
+       <div fxLayout="row">
+          <p class="head0" routerLink="/home/allbooks">Home /</p>
+          <p class="head1">Book({{count}})</p>
+       </div>
+ 
+       <mat-accordion multi>
+          <mat-expansion-panel hideToggle class="panel" [expanded]="true">
+             <mat-expansion-panel-header>
+                <mat-panel-title class="paneltitle">
+                   My cart ({{count}})
+                </mat-panel-title>
+                <mat-panel-title class="location">
+                 <img style="width: 20px;" src="../../../assets/mapred.png" alt=""> Use Current Location
+               </mat-panel-title>
+             </mat-expansion-panel-header>
+             <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="50px" fxLayout.xs="column"
+                *ngFor="let data of cartList; let i=index;" class="bookdata">
+                <div fxLayout="column" fxLayoutGap="15px">
+                   <img class="book" src="./../../../assets/Books/{{data.image}}">
+                </div>
+                <div>
+                   <p class="bookname">{{data.bookName}}</p>
+                   <p class="author">by {{data.authorName}}</p>
+                   <p class="actualprice"> {{data.price  | currency:'INR'}}</p>
+                   <p class="actualprice">Total price:{{ data.price * data.quantityInCart }}</p>
+                   <p class="actualprice" style="color:brown">Available Quantity is: {{data.noOfBooks}}</p>
+                   
+                   <div fxLayout="row" fxLayoutGap="10px">
+                   </div>
+                   <div fxLayout="row" fxLayoutAlign="space-between start">
+                      <div fxLayout="row">
+                         <button mat-icon-button (click)="countdecrease(data)">
+                            <i class="material-icons-outlined-plus">&#45;</i>
+                         </button>
+                         <p class="count" >{{data.quantityInCart}}</p>
+                         <button mat-icon-button (click)="countincrease(data)" *ngIf="data.noOfBooks > 0">
+                            <i class="material-icons-outlined-minus">&#43;	</i>
+                         </button>
+                      </div>
+                      <button mat-button (click)="removecartitem(data.bookId)">Remove</button>
+                   </div>
+                </div>
+             </div>
+             <div fxLayout="row" fxLayoutAlign="end end">
+                <button mat-flat-button color="primary" class="placeorder" *ngIf="step1button" (click)="setStep(1)">Place order</button>
+             </div>
+          </mat-expansion-panel>
+ 
+          <mat-expansion-panel hideToggle class="panel" [expanded]="step1">
+             <mat-expansion-panel-header>
+                <mat-panel-title class="paneltitle">
+                   Customer Details
+                </mat-panel-title>
+             </mat-expansion-panel-header>
+             <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="15px">
+                <mat-form-field appearance="outline">
+                   <mat-label>Full Name</mat-label>
+                   <mat-error>Enter Full Name</mat-error>
+                   <input matInput required [value]="fullname">
+                </mat-form-field>
+ 
+                <mat-form-field appearance="outline">
+                   <mat-label>Mobile Number</mat-label>
+                   <mat-error>Enter a Mobile Number</mat-error>
+                   <input matInput required [value]="mobilenumber">
+                </mat-form-field>
+             </div>
+             <mat-radio-group aria-label="Select an option" >
+                <mat-radio-button class="radiobutton"> 
+                   <form [formGroup]="userFormGroup">
+                      <div fxLayout="row">
+                         <p class="addresstype">Addresss</p>
+                         <button class="editbutton" mat-button *ngIf="disabled" ></button>
+                      </div>
+                      <mat-form-field appearance="outline" style="margin-top: 15px;">
+                         <mat-label>Address</mat-label>
+                         <mat-error>Enter Address</mat-error>
+                         <input formControlName="address" matInput required>
+                      </mat-form-field>
+                      <div fxLayout="row" fxLayoutGap="10px">
+                         <mat-form-field appearance="outline" style="margin-top: 15px;">
+                            <mat-label>city/town</mat-label>
+                            <mat-error>Enter a city/town</mat-error>
+                            <input formControlName="city" matInput required>
+                         </mat-form-field>
+ 
+                         <mat-form-field appearance="outline">
+                            <mat-label>State</mat-label>
+                            <mat-error>Enter a state</mat-error>
+                            <input formControlName="state" matInput required>
+                         </mat-form-field>
+                      </div>
+                   </form>
+                </mat-radio-button>
+             </mat-radio-group>
+ 
+ 
+ 
+             <div fxLayout="row" fxLayoutAlign="end end">
+                <button mat-flat-button color="primary" class="placeorder" (click)="totalPrice() ; setStep(2);" *ngIf="step2button " >Continue</button>
+                <!-- <button mat-flat-button color="primary" class="placeorder" >Update address & Continue</button> -->
+             </div>
+          </mat-expansion-panel>
+ 
+          <mat-expansion-panel hideToggle class="panel" [expanded]="step2">
+             <mat-expansion-panel-header>
+                <mat-panel-title class="paneltitle">
+                   Order summery
+                </mat-panel-title>
+             </mat-expansion-panel-header>
+             <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="50px" fxLayout.lt-md="column"
+                *ngFor="let data of cartList" class="bookdata">
+                <div fxLayout="column" fxLayoutGap="15px">
+                   <img class="book" src="./../../../assets/Books/{{data.image}}">
+                </div>
+                <div>
+                   <p class="bookname">{{data.bookName}}</p>
+                   <p class="author">by {{data.authorName}}</p>
+                            <div fxLayout="row" fxLayoutGap="10px">
+                      <!-- <p class="actualprice" >Rs.
+                         {{data.price-data.discountPrice}}</p> -->
+                      <p class="discountPrice"><del>Rs.{{data.price}}</del>
+                      </p>
+
+                   </div>
+                </div>
+             </div>
+             <div>
+               <p style="color:brown; margin-left: 250px; border: 1px;" >Total Order Price Rs.{{TotalBookOrderPrice}}</p>
+             </div>
+             <div fxLayout="row" fxLayoutAlign="end end">
+                <button (click)="addressdata() " mat-flat-button color="primary" class="placeorder" 
+                routerLink="/home/ordersuccessfull">Checkout</button>
+             </div>
+          </mat-expansion-panel>
+       </mat-accordion>
+ 
+    </div>
+ </div>
+
+ <app-footer></app-footer>

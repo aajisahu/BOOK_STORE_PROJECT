@@ -1,0 +1,62 @@
+<app-home></app-home>
+
+<div class="container" [ngStyle.xs]="{'margin-left.px':0,'margin-right.px':0}">
+   <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutAlign.xs="start center">
+      <div class="book_num">
+         <span style="font-size: 25px;">Books </span>
+         <span style="font-size: 12px; color: grey;"> ({{bookscount}} items) </span>
+      </div>
+      <div fxLayoutAlign="end" fxFlex>
+         <form class="filterform">
+            <mat-form-field appearance="outline">
+               <mat-select [(value)]="selectedValue" >
+                  <mat-option *ngFor="let element of box " [value]="element.value" (click)="sorting($event)">
+                     {{element.value }}
+                  </mat-option>
+               </mat-select>
+            </mat-form-field>
+         </form>
+      </div>
+   </div>
+   <div class="body">
+      <mat-card class="card" *ngFor="let book of bookList | paginate:{itemsPerPage: 8, currentPage: pagecount } 
+        | pipe:searchKey:'bookName'" matTooltip="QUICK VIEW" matTooltipClass="tooltip" (click)="quickView(book)">
+
+         <div class="book_img_div">
+            <img src="./../../../assets/Books/{{book.image}}" alt="book" class="book_img">
+         </div>
+
+         <div style="padding: 10px 0px 10px 0px;white-space:nowrap;"  fxLayout="column" fxLayoutGap="8px">
+            <div style="font: normal normal normal 14px/19px Roboto; color: #0A0102;">
+               {{book.bookName}}
+            </div>
+
+            <div style="font: normal normal normal 10px/13px Roboto; color: #878787;">
+               by {{book.authorName}}
+            </div>
+
+            <div fxLayout="row" fxLayoutGap="8px" fxLayoutAlign=" center">
+               <div class="book_rating">
+                  <div style="font: normal normal bold 10px/13px Roboto; color: #FFFFFF;">{{book.bookRating}}</div>
+                  <div>
+                     <mat-icon style="font-size: 10px; height: 4px; width: 10px; color: #FFFFFF;">star</mat-icon>
+                  </div>
+               </div>
+               <div style="font: normal normal normal 10px/13px Roboto; color: #878787;">
+                  {{book.noOfBooks}}
+               </div>
+            </div>
+            <div fxLayout="row" fxLayoutGap="8px">
+               <div class="book_price">{{book.price | currency:'INR' }}</div>
+               <div class="discount_price">Rs.{{book.price-book.discountPrice}}</div>
+            </div>
+         </div>
+      </mat-card>
+   </div>
+   <br><br>
+   <div class="pagechange">
+      <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="pagecount=$event"></pagination-controls>
+   </div><br><br>
+   <div>
+      <app-footer></app-footer>
+   </div>

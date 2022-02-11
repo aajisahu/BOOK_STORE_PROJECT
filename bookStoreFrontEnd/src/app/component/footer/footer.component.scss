@@ -1,0 +1,25 @@
+.footer_text {
+   text-align    : left;
+   letter-spacing: 0px;
+   font-family   : Lato;
+   font-size     : 12px;
+   color         : #FFFFFF;
+   opacity       : 1;
+   margin-left   : 174px;
+   vertical-align: middle;
+}
+
+.footer {
+   position            : fixed;
+   left                : 0;
+   bottom              : 0;
+   width               : 100%;
+   margin-top          : 20.5em;
+   background-color    : #2E1D1E;
+   height              : 50px;
+   display             : flex;
+   align-items         : center;
+   //  bottom          : 0;
+   //  position        : relative;
+   //  width           : 100%;
+}
